@@ -3,7 +3,7 @@
 
 MASTER_NODE_HOSTNAME = 'master'
 WORKER_NODE_HOSTNAME = 'worker'
-MASTER_IP = '192.168.56.10'
+MASTER_IP = '192.168.56.109'
 WORKER_IP = '192.168.56.110'
 CPU_CORES_COUNT = 1
 MEMORY_COUNT = 512
@@ -11,7 +11,7 @@ MEMORY_COUNT = 512
 
 # create machines config
 Vagrant.configure("2") do |config|
-	config.vm.box = "bento/debian-11"
+	config.vm.box = "bento/debian-12.9"
 	config.vm.provider "virtualbox" do |v|
 		v.memory = MEMORY_COUNT
 		v.cpus = CPU_CORES_COUNT

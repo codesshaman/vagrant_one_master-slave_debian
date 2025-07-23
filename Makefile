@@ -22,7 +22,8 @@ help:
 	@echo -e "$(OK_COLOR)==== All commands of ${name} configuration ====$(NO_COLOR)"
 	@echo -e "$(WARN_COLOR)- make				: Launch configuration"
 	@echo -e "$(WARN_COLOR)- make build			: Building configuration"
-	@echo -e "$(WARN_COLOR)- make connect			: Connect to VM with ssh"
+	@echo -e "$(WARN_COLOR)- make connect			: Connect to master VM with ssh"
+	@echo -e "$(WARN_COLOR)- make conslave			: Connect to slave VM with ssh"
 	@echo -e "$(WARN_COLOR)- make down			: Stopping configuration"
 	@echo -e "$(WARN_COLOR)- make env			: Create environment file"
 	@echo -e "$(WARN_COLOR)- make git			: Set user and mail for git"
@@ -31,16 +32,19 @@ help:
 	@echo -e "$(WARN_COLOR)- make push			: Push changes to repository"
 	@echo -e "$(WARN_COLOR)- make re			: Restart configuration"
 	@echo -e "$(WARN_COLOR)- make clean			: Destroy configuration"
-	@echo -e "$(WARN_COLOR)- make  fclean			: Forced destroy all$(NO_COLOR)"
+	@echo -e "$(WARN_COLOR)- make fclean			: Forced destroy all$(NO_COLOR)"
 
 build:
 	@printf "$(OK_COLOR)==== Building configuration ${name}... ====$(NO_COLOR)\n"
-	@vagrant box add ephillips/whonix-workstation workstation
-	@vagrant box add ephillips/whonix-gateway gateway
+	@vagrant box add bento/debian-12.9 debian
 
 connect:
 	@printf "$(OK_COLOR)==== Connecting to virtual machine ${name}... ====$(NO_COLOR)\n"
-	@ssh vagrant@10.152.152.11
+	@ssh vagrant@192.168.56.109
+
+conslave:
+	@printf "$(OK_COLOR)==== Connecting to virtual machine ${name}... ====$(NO_COLOR)\n"
+	@ssh vagrant@192.168.56.110
 
 down:
 	@printf "$(ERROR_COLOR)==== Stopping configuration ${name}... ====$(NO_COLOR)\n"
